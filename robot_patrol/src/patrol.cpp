@@ -16,15 +16,15 @@ public:
         auto qos = rclcpp::QoS(10).reliability(rclcpp::ReliabilityPolicy::Reliable);
 
         laser_subscriber_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
-        "/fastbot_1/scan", 
+        "/scan", 
         qos, 
         std::bind(&PatrolNode::laserscan_callback, this, std::placeholders::_1)
         );
 
-        cmd_publisher_ = this->create_publisher<geometry_msgs::msg::Twist>("fastbot_1/cmd_vel", 10);
+        cmd_publisher_ = this->create_publisher<geometry_msgs::msg::Twist>("cmd_vel", 10);
 
         auto timer_period = std::chrono::milliseconds(100); //Equivalent to 10Hz
-        timer_ = this->create_wall_timer(timer_period, std::bind(&PatrolNode::timer_control_callback, this));
+        //timer_ = this->create_wall_timer(timer_period, std::bind(&PatrolNode::timer_control_callback, this));
 
         RCLCPP_INFO(this->get_logger(), "%s Ready...", node_name_.c_str());
     }
@@ -53,10 +53,19 @@ private:
         RCLCPP_INFO(this->get_logger(), "min_distance = %.2f", *min_distance);
         RCLCPP_INFO(this->get_logger(), "min_distance_index = %i", min_distance_index);
 
+
+        RCLCPP_INFO(this->get_logger(), "100th index = %.2f", msg->ranges[100]);
+        RCLCPP_INFO(this->get_logger(), "0 index = %.2f", msg->ranges[0]);
+
+
+        RCLCPP_INFO(this->get_logger(), "angle_max = %.2f", msg->angle_max);
+        RCLCPP_INFO(this->get_logger(), "angle_min = %.2f", msg->angle_min);
+
         if ((min_distance_index >= 50 && min_distance_index <= 150) && *min_distance < .35)
         {
             direction_ = msg->angle_min + (min_distance_index * msg->angle_increment);
             RCLCPP_INFO(this->get_logger(), "direction_ = %.2f", direction_);
+
         }
         else
         {
