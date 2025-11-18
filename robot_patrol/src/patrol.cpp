@@ -53,15 +53,6 @@ private:
         RCLCPP_INFO(this->get_logger(), "min_distance = %.2f", *min_distance);
         RCLCPP_INFO(this->get_logger(), "min_distance_index = %i", min_distance_index);
 
-        //RCLCPP_INFO(this->get_logger(), "angle_min = %.2f", msg->angle_min);
-        //RCLCPP_INFO(this->get_logger(), "angle_max = %.2f", msg->angle_max);
-
-        //RCLCPP_INFO(this->get_logger(), "range[50] = %.2f", msg->ranges[50]);
-        //RCLCPP_INFO(this->get_logger(), "range[150] = %.2f", msg->ranges[150]);
-
-        //direction_ = msg->angle_min + (min_distance_index * msg->angle_increment);
-        //RCLCPP_INFO(this->get_logger(), "direction_ = %.2f", direction_);
-
         if ((min_distance_index >= 50 && min_distance_index <= 150) && *min_distance < .35)
         {
             direction_ = msg->angle_min + (min_distance_index * msg->angle_increment);
