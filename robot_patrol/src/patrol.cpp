@@ -66,7 +66,7 @@ private:
 
     void timer_control_callback()
     {
-        double angular = -1.5 * direction_;
+        double angular = -2 * direction_;
         angular = std::max(-1.2, std::min(1.2, angular));
 
         auto msg = geometry_msgs::msg::Twist();
