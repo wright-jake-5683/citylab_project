@@ -3,10 +3,13 @@
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/laser_scan.hpp"
 #include "geometry_msgs/msg/twist.hpp"
+#include <nav_msgs/msg/odometry.hpp>
 #include "rclcpp/qos.hpp"
 #include <algorithm>
 #include <chrono>
 #include <cmath>
+#include <tf2/LinearMath/Quaternion.h>
+#include <tf2/LinearMath/Matrix3x3.h>
 
 class PatrolNode : public rclcpp::Node
 {
@@ -21,6 +24,10 @@ public:
         qos, 
         std::bind(&PatrolNode::laserscan_callback, this, std::placeholders::_1)
         );
+
+        odom_subscriber_ = this->create_subscription<nav_msgs::msg::Odometry>(
+        "/odom", 10,
+        std::bind(&PatrolNode::odomCallback, this, std::placeholders::_1));
 
         cmd_publisher_ = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
 
@@ -43,9 +50,30 @@ public:
 private:
     std::string node_name_;
     float direction_;
+    double current_yaw_;
     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr laser_subscriber_;
+    rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_subscriber_;
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_publisher_;
     rclcpp::TimerBase::SharedPtr timer_;
+
+    void odomCallback(const nav_msgs::msg::Odometry::SharedPtr msg)
+    {
+        // Extract yaw from quaternion (range -π..π)
+        tf2::Quaternion q(
+            msg->pose.pose.orientation.x,
+            msg->pose.pose.orientation.y,
+            msg->pose.pose.orientation.z,
+            msg->pose.pose.orientation.w);
+        double roll, pitch, yaw;
+        tf2::Matrix3x3(q).getRPY(roll, pitch, yaw);
+
+        // Normalize to [-π, π]
+        current_yaw_ = yaw;
+        while (current_yaw_ > M_PI)  current_yaw_ -= 2*M_PI;
+        while (current_yaw_ < -M_PI) current_yaw_ += 2*M_PI;
+        //RCLCPP_INFO(this->get_logger(), "current_yaw_ = %.2f", current_yaw_);
+    }
+
 
     void laserscan_callback(const sensor_msgs::msg::LaserScan::SharedPtr msg)
     {
@@ -103,7 +131,6 @@ private:
             front_scan.intensities.clear();
         
         // update angle_min / angle_max / increment to reflect new data
-        
         if (!front_scan.ranges.empty())
         {
             front_scan.angle_min = -angle_split;
@@ -111,16 +138,6 @@ private:
             front_scan.angle_increment = msg->angle_increment;  // usually unchanged
         }
         
-        
-        //RCLCPP_INFO(this->get_logger(), "front scan = %li", front_scan.ranges.size());
-
-        //double index_float = (180 - front_scan.angle_min) / front_scan.angle_increment;
-        //int index = static_cast<int>(std::round(index_float));
-        //RCLCPP_INFO(this->get_logger(), "index = %li", index);
-
-        //RCLCPP_INFO(this->get_logger(), "right side laser = %.2f", front_scan.ranges[113]);
-        //RCLCPP_INFO(this->get_logger(), "front side laser = %.2f", front_scan.ranges[0]);
-        //RCLCPP_INFO(this->get_logger(), "left side laser = %.2f", front_scan.ranges[50]);
         RCLCPP_INFO(this->get_logger(), "angle min = %.2f", front_scan.angle_min);
         RCLCPP_INFO(this->get_logger(), "angle max = %.2f", front_scan.angle_max);
 
@@ -135,18 +152,10 @@ private:
         //float index_float = (angle - front_scan.angle_min) / front_scan.angle_increment;
         //int index = static_cast<int>(std::round(index_float));
         //RCLCPP_INFO(this->get_logger(), "index at %.2f = %i", angle, index);
-
-        if ((min_distance_index <= 112 && min_distance_index >= 0) && *min_distance < .35)
+        
+        if ((min_distance_index <= 230 && min_distance_index >= 0) && *min_distance < .35)
         {
-            //direction_ = -1 * (front_scan.angle_min + (min_distance_index * front_scan.angle_increment));
-            //RCLCPP_INFO(this->get_logger(), "direction_ = %.2f", direction_);
-
             direction_ = (front_scan.angle_min + (min_distance_index * front_scan.angle_increment));
-            RCLCPP_INFO(this->get_logger(), "direction_ = %.2f", direction_);
-        }
-        else if ((min_distance_index >= 113 && min_distance_index <= 230) && *min_distance < .35) 
-        {
-            direction_ = front_scan.angle_min + (min_distance_index * front_scan.angle_increment);
             RCLCPP_INFO(this->get_logger(), "direction_ = %.2f", direction_);
         }
         else
@@ -157,12 +166,29 @@ private:
 
     void timer_control_callback()
     {
-        double angular = -2 * direction_;
-        angular = std::max(-1.2, std::min(0.75, angular));
+        double ang_vel = -2 * direction_;
+        ang_vel = std::max(-1.2, std::min(0.75, ang_vel));
 
+        /*
+        const double yaw_limit = M_PI_2;
+
+        bool turning_left  = ang_vel > 0.0;
+        bool turning_right = ang_vel < 0.0;
+
+        bool would_exceed =
+        (turning_left  && current_yaw_ >= yaw_limit) ||
+        (turning_right && current_yaw_ <= -yaw_limit);
+
+        if (would_exceed) {
+            ang_vel = 0.0;
+            RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 1000,
+                           "Yaw limit reached (%.1f°), blocking rotation!",
+                           current_yaw_ * 180.0 / M_PI);
+        }
+        */
         auto msg = geometry_msgs::msg::Twist();
         msg.linear.x = 0.1;
-        msg.angular.z = angular;
+        msg.angular.z = ang_vel;
         cmd_publisher_->publish(msg);
         RCLCPP_INFO(this->get_logger(), "Publishing: linear.x=%.2f, angular.z=%.2f", msg.linear.x, msg.angular.z);
 
