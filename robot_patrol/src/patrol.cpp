@@ -25,7 +25,7 @@ public:
         cmd_publisher_ = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
 
         auto timer_period = std::chrono::milliseconds(100); //Equivalent to 10Hz
-        //timer_ = this->create_wall_timer(timer_period, std::bind(&PatrolNode::timer_control_callback, this));
+        timer_ = this->create_wall_timer(timer_period, std::bind(&PatrolNode::timer_control_callback, this));
 
         RCLCPP_INFO(this->get_logger(), "%s Ready...", node_name_.c_str());
     }
@@ -47,89 +47,118 @@ private:
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_publisher_;
     rclcpp::TimerBase::SharedPtr timer_;
 
-    struct Quadrants {
-        std::vector<float> front;
-        std::vector<float> left;
-        std::vector<float> back;
-        std::vector<float> right;
-    };
-
-    Quadrants splitLaserData(const sensor_msgs::msg::LaserScan &msg)
-    {
-         Quadrants q;
-
-        // Check if there is any laser scan data coming in
-        if (msg->ranges.empty())
-        {
-            return q;
-        }
-
-        // Reserve memory to improve speed
-        size_t laser_vector_size = msg->ranges.size();
-        q.front.reserve(laser_vector_size / 4);
-        q.left.reserve(laser_vector_size / 4);
-        q.back.reserve(laser_vector_size / 4);
-        q.right.reserve(laser_vector_size / 4);
-
-
-        for (size_t i=0; i < laser_vector_size; i++)
-        {
-            // Find angle based on angle min plus the angle increment times the index
-            float angle = msg->angle_min + (i * msg->angle_increment);
-
-            // Normalize angle between pi & -pi
-            while (angle > M_PI) { angle -= 2.0 * M_PI; }
-            while (angle < -M_PI) { angle += 2.0 * M_PI; }
-
-            // Capture distance reading for laser at index i
-            float distance = msg->range[i];
-
-            // Ignore invalid readings (optional)
-            if (std::isinf(distance) || std::isnan(distance) || distance < msg->range_min || distance > msg->range_max) 
-            {
-                continue;  // skip inf/nan/out-of-range
-            }
-
-            // Split into 4 quadrants: ±45° and ±135°
-            if (angle >= -M_PI_4 && angle <= M_PI_4) {
-                q.front.push_back(distance);           // -45° to +45°  → Front
-            }
-            else if (angle > M_PI_4 && angle < 3*M_PI_4) {
-                q.left.push_back(distance);            // +45° to +135° → Left
-            }
-            else if (angle >= 3*M_PI_4 || angle <= -3*M_PI_4) {
-                q.rear.push_back(distance);            // +135° to +180° and -180° to -135° → Rear
-            }
-            else {
-                q.right.push_back(distance);           // -135° to -45° → Right
-            }
-        }
-    }
-
     void laserscan_callback(const sensor_msgs::msg::LaserScan::SharedPtr msg)
     {
-        Quadrants quadrants = splitLaserData(*msg);
+        //RCLCPP_INFO(this->get_logger(), "msg scan = %li", msg->ranges.size());
+        
+        
+        sensor_msgs::msg::LaserScan front_scan = *msg;  // copy header, frame_id, etc.
 
-        for (int i=0; i < quadrants.front.size(); i++)
+        double angle_split = M_PI / 180.0 * (180.0 / 2.0); // 90 degrees -> pi/2
+
+
+        std::vector<float> front_ranges;
+        std::vector<float> front_intensities;
+
+        front_ranges.reserve(msg->ranges.size() / 2 + 10);
+
+        for (size_t i=338; i < msg->ranges.size(); i++)
         {
-            RCLCPP_INFO(this->get_logger(), "front i: %.2f", quadrants.front[i]);
+            double angle = msg->angle_min + (i * msg->angle_increment);
+
+            while (angle >  M_PI) angle -= 2.0 * M_PI;
+            while (angle <= -M_PI) angle += 2.0 * M_PI;
+
+            // Keep only beams in front sector: [-angle_split, +angle_split]
+            if (angle >= -angle_split && angle <= angle_split)
+            {
+                front_ranges.push_back(msg->ranges[i]);
+
+                if (!msg->intensities.empty())
+                    front_intensities.push_back(msg->intensities[i]);
+            }
         }
 
-        auto min_distance_index = [](const std::vector<float> &v) -> float {
-            auto distance = std::min_element(v.begin(), v.end())
-            return v.empty() ? INFINITY : std::distance(v.begin(), distance);
-        };
+        for (size_t i=0; i < 338; i++)
+        {
+            double angle = msg->angle_min + (i * msg->angle_increment);
 
-        float front_index  = min_distance(quadrants.front);
-        float right_index  = min_distance(quadrants.right);
-        float left_index  = min_distance(quadrants.left);
+            while (angle >  M_PI) angle -= 2.0 * M_PI;
+            while (angle <= -M_PI) angle += 2.0 * M_PI;
 
+            // Keep only beams in front sector: [-angle_split, +angle_split]
+            if (angle >= -angle_split && angle <= angle_split)
+            {
+                front_ranges.push_back(msg->ranges[i]);
+
+                if (!msg->intensities.empty())
+                    front_intensities.push_back(msg->intensities[i]);
+            }
+        }
+
+        front_scan.ranges = std::move(front_ranges);
+        if (!front_intensities.empty())
+            front_scan.intensities = std::move(front_intensities);
+        else
+            front_scan.intensities.clear();
+        
+        // update angle_min / angle_max / increment to reflect new data
+        
+        if (!front_scan.ranges.empty())
+        {
+            front_scan.angle_min = -angle_split;
+            front_scan.angle_max = +angle_split;
+            front_scan.angle_increment = msg->angle_increment;  // usually unchanged
+        }
+        
+        
+        //RCLCPP_INFO(this->get_logger(), "front scan = %li", front_scan.ranges.size());
+
+        //double index_float = (180 - front_scan.angle_min) / front_scan.angle_increment;
+        //int index = static_cast<int>(std::round(index_float));
+        //RCLCPP_INFO(this->get_logger(), "index = %li", index);
+
+        //RCLCPP_INFO(this->get_logger(), "right side laser = %.2f", front_scan.ranges[113]);
+        //RCLCPP_INFO(this->get_logger(), "front side laser = %.2f", front_scan.ranges[0]);
+        //RCLCPP_INFO(this->get_logger(), "left side laser = %.2f", front_scan.ranges[50]);
+        RCLCPP_INFO(this->get_logger(), "angle min = %.2f", front_scan.angle_min);
+        RCLCPP_INFO(this->get_logger(), "angle max = %.2f", front_scan.angle_max);
+
+        auto min_distance = std::min_element(front_scan.ranges.begin(), front_scan.ranges.end());
+        int min_distance_index = std::distance(front_scan.ranges.begin(), min_distance);
+        float min_distance_angle = front_scan.angle_min + (min_distance_index * front_scan.angle_increment);
+        RCLCPP_INFO(this->get_logger(), "min_distance = %.2f", *min_distance);
+        RCLCPP_INFO(this->get_logger(), "min_distance_index = %i", min_distance_index);
+        RCLCPP_INFO(this->get_logger(), "min_distance_angle = %f", min_distance_angle);
+
+        //float angle = 1.57;
+        //float index_float = (angle - front_scan.angle_min) / front_scan.angle_increment;
+        //int index = static_cast<int>(std::round(index_float));
+        //RCLCPP_INFO(this->get_logger(), "index at %.2f = %i", angle, index);
+
+        if ((min_distance_index <= 112 && min_distance_index >= 0) && *min_distance < .35)
+        {
+            //direction_ = -1 * (front_scan.angle_min + (min_distance_index * front_scan.angle_increment));
+            //RCLCPP_INFO(this->get_logger(), "direction_ = %.2f", direction_);
+
+            direction_ = (front_scan.angle_min + (min_distance_index * front_scan.angle_increment));
+            RCLCPP_INFO(this->get_logger(), "direction_ = %.2f", direction_);
+        }
+        else if ((min_distance_index >= 113 && min_distance_index <= 230) && *min_distance < .35) 
+        {
+            direction_ = front_scan.angle_min + (min_distance_index * front_scan.angle_increment);
+            RCLCPP_INFO(this->get_logger(), "direction_ = %.2f", direction_);
+        }
+        else
+        {
+            direction_ = 0.0;
+        }
     }
 
     void timer_control_callback()
     {
         double angular = -2 * direction_;
-        angular = std::max(-1.2, std::min(1.2, angular));
+        angular = std::max(-1.2, std::min(0.75, angular));
 
         auto msg = geometry_msgs::msg::Twist();
         msg.linear.x = 0.1;
