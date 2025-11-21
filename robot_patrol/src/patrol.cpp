@@ -82,7 +82,7 @@ private:
         
         sensor_msgs::msg::LaserScan front_scan = *msg;  // copy header, frame_id, etc.
 
-        double angle_split = M_PI / 180.0 * (180.0 / 2.0); // 90 degrees -> pi/2
+        double angle_split = M_PI / 180.0 * (180.0 / 2.5); // 90 degrees -> pi/2
 
 
         std::vector<float> front_ranges;
