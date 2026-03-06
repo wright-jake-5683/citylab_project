@@ -13,6 +13,7 @@ find_package(geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
+find_package(custom_interfaces REQUIRED)
 
 
 # Create executable
@@ -27,9 +28,38 @@ tf2
 tf2_geometry_msgs
 )
 
+add_executable(patrol_with_service src/patrol_with_service.cpp)
+
+ament_target_dependencies(patrol_with_service 
+rclcpp 
+sensor_msgs
+geometry_msgs
+custom_interfaces
+)
+
+add_executable(direction_service src/direction_service.cpp)
+
+ament_target_dependencies(direction_service 
+rclcpp 
+sensor_msgs
+custom_interfaces
+)
+
+add_executable(test_service src/test_service.cpp)
+
+ament_target_dependencies(test_service 
+rclcpp 
+sensor_msgs
+custom_interfaces
+)
+
+
 # Install executables
 install(TARGETS
   robot_patrol
+  patrol_with_service
+  direction_service
+  test_service
   DESTINATION lib/${PROJECT_NAME})
 
 # Install launch files
