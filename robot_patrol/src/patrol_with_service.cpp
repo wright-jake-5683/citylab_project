@@ -126,9 +126,11 @@ private:
             double angle = msg->angle_min + (i * msg->angle_increment);
             angle = normalizeAngle(angle);
 
+
             // Keep only beams in front sector: [-angle_split, +angle_split]
             if (angle >= -front_angle_split && angle <= front_angle_split) 
             {
+                RCLCPP_INFO(this->get_logger(), "front scan angle: %.2f", angle);
                 front_scan.ranges.push_back(msg->ranges[i]);
 
                 if (!msg->intensities.empty())
