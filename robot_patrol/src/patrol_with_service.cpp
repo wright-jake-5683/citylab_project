@@ -74,13 +74,13 @@ public:
         sub_options.callback_group = reentrant_group_;
 
         laser_subscriber_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
-            "/fastbot_1/scan", 
+            "/scan", 
             qos,
             std::bind(&PatrolNode::laserscan_callback, this, std::placeholders::_1),
             sub_options
             );
 
-        cmd_publisher_ = this->create_publisher<geometry_msgs::msg::Twist>("/fastbot_1/cmd_vel", 10);
+        cmd_publisher_ = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
 
         auto timer_period = std::chrono::milliseconds(100); // Equivalent to 10Hz
         timer_ = this->create_wall_timer(
@@ -150,6 +150,9 @@ private:
 
         front_laser_data_ = front_scan;
         danger_laser_data_ = danger_zone_scan;
+        RCLCPP_INFO(this->get_logger(), "danger zone angle min: %.2f", danger_laser_data_.angle_min);
+        RCLCPP_INFO(this->get_logger(), "danger zone angle max: %.2f", danger_laser_data_.angle_max);
+
 
     }
 
@@ -220,7 +223,7 @@ private:
             return;
         }
 
-        publish_velocities(ang_vel);
+        //publish_velocities(ang_vel);
     }
 
     void publish_velocities(float ang_vel) {

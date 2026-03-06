@@ -53,33 +53,43 @@ private:
                 total_dist_sec_right_.clear();
                 total_dist_sec_front_.clear();
                 total_dist_sec_left_.clear();
-
+                /*
                 RCLCPP_INFO(this->get_logger(), "angle min: %.2f", request->laser_data.angle_min);
                 RCLCPP_INFO(this->get_logger(), "angle max: %.2f", request->laser_data.angle_max);
+                */
 
                 for (size_t i = 0; i < request->laser_data.ranges.size(); i++) {
                     double angle = request->laser_data.angle_min + (i * request->laser_data.angle_increment);
 
                     if (angle >= (request->laser_data.angle_min) && angle <= -(M_PI / 6)) 
                     {
-                        total_dist_sec_right_.push_back(request->laser_data.ranges[i]);
+                        total_dist_sec_right_.push_back(
+                            clamp_range(request->laser_data.ranges[i], request->laser_data.range_max)
+                        );
                         //RCLCPP_INFO(this->get_logger(), "right i = %li", i);
+                        //RCLCPP_INFO(this->get_logger(), "right angle & i = %.2f & %li", angle, i);
                     } 
                     else if (angle > -(M_PI / 6) && angle < (M_PI / 6)) 
                     {
-                        total_dist_sec_front_.push_back(request->laser_data.ranges[i]);
+                        total_dist_sec_front_.push_back(
+                            clamp_range(request->laser_data.ranges[i], request->laser_data.range_max)
+                        );
                         //RCLCPP_INFO(this->get_logger(), "front i = %li", i);
                     } 
                     else if (angle >= (M_PI / 6) && angle <= request->laser_data.angle_max) 
                     {
-                        total_dist_sec_left_.push_back(request->laser_data.ranges[i]);
+                        total_dist_sec_left_.push_back(
+                            clamp_range(request->laser_data.ranges[i], request->laser_data.range_max)
+                        );
                         //RCLCPP_INFO(this->get_logger(), "left i = %li", i);
+                        //RCLCPP_INFO(this->get_logger(), "left angle & i = %.2f & %li", angle, i);
                     }
                 }
-                
+                /*
                 RCLCPP_INFO(this->get_logger(), "Sec left ranges size: %zu", total_dist_sec_left_.size());
                 RCLCPP_INFO(this->get_logger(), "Sec front ranges size: %zu", total_dist_sec_front_.size());
                 RCLCPP_INFO(this->get_logger(), "Sec right ranges size: %zu", total_dist_sec_right_.size());
+                */
                 
             }
             catch(const std::exception& e)
@@ -87,6 +97,13 @@ private:
                 RCLCPP_ERROR(this->get_logger(), "split data Exception: %s", e.what());
             }
         }
+
+    float clamp_range(float range, float range_max) {
+        if (!std::isfinite(range)) {
+            return 0;
+        }
+        return range;
+    }
 
   double sum_total_dist_sec_right_()
   {
@@ -102,6 +119,7 @@ private:
   {
     double sum = 0;
     for (size_t i = 0; i < total_dist_sec_front_.size(); i++) {
+      //RCLCPP_INFO(this->get_logger(), "front i = %.2f", total_dist_sec_front_[i]);
       sum += total_dist_sec_front_[i];
     }
     return sum;
