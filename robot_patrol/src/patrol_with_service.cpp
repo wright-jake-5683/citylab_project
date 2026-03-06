@@ -129,12 +129,13 @@ private:
             // Keep only beams in front sector: [-angle_split, +angle_split]
             if (angle >= -front_angle_split && angle <= front_angle_split) 
             {
+                RCLCPP_INFO(this->get_logger(), "front scan angle: %.2f", angle);
                 front_scan.ranges.push_back(msg->ranges[i]);
 
                 if (!msg->intensities.empty())
                 front_scan.intensities.push_back(msg->intensities[i]);
             }
-            if (angle >-danger_zone_angle_split && angle <= danger_zone_angle_split)
+            if (angle >=-danger_zone_angle_split && angle <= danger_zone_angle_split)
             {
                 danger_zone_scan.ranges.push_back(msg->ranges[i]);
 
@@ -143,16 +144,21 @@ private:
             }
         }
 
+
         front_scan.angle_min = -front_angle_split;
         front_scan.angle_max = front_angle_split;
         danger_zone_scan.angle_min = -danger_zone_angle_split;
         danger_zone_scan.angle_max = danger_zone_angle_split;
 
+
+        RCLCPP_INFO(this->get_logger(), "front scan angle min: %.2f", front_scan.angle_min );
+        RCLCPP_INFO(this->get_logger(), "front scan angle max: %.2f", front_scan.angle_max);
+        RCLCPP_INFO(this->get_logger(), "danger scan angle min: %.2f", danger_zone_scan.angle_min );
+        RCLCPP_INFO(this->get_logger(), "danger scan angle max: %.2f", danger_zone_scan.angle_max);
+    
+
         front_laser_data_ = front_scan;
         danger_laser_data_ = danger_zone_scan;
-        RCLCPP_INFO(this->get_logger(), "danger zone angle min: %.2f", danger_laser_data_.angle_min);
-        RCLCPP_INFO(this->get_logger(), "danger zone angle max: %.2f", danger_laser_data_.angle_max);
-
 
     }
 
@@ -223,7 +229,7 @@ private:
             return;
         }
 
-        //publish_velocities(ang_vel);
+        publish_velocities(ang_vel);
     }
 
     void publish_velocities(float ang_vel) {
