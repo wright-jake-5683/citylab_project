@@ -40,11 +40,13 @@ class DirectionClientNode : public rclcpp::Node
             request->laser_data = laser_data;
 
             auto future = service_client_->async_send_request(request);
+            RCLCPP_INFO(this->get_logger(), "/direction_service has been requested from client...");
 
             // Block until the response arrives (safe with Reentrant + MultiThreadedExecutor)
             if (future.wait_for(2s) == std::future_status::ready) {
                 auto response = future.get();
                 if (response) {
+                    RCLCPP_INFO(this->get_logger(), "/direction_service has responded to client");
                     return response->direction;
                 } 
                 else 
