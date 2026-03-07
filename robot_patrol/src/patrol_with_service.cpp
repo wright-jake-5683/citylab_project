@@ -40,11 +40,13 @@ class DirectionClientNode : public rclcpp::Node
             request->laser_data = laser_data;
 
             auto future = service_client_->async_send_request(request);
+            RCLCPP_INFO(this->get_logger(), "/direction_service has been request from client...");
 
             // Block until the response arrives (safe with Reentrant + MultiThreadedExecutor)
             if (future.wait_for(2s) == std::future_status::ready) {
                 auto response = future.get();
                 if (response) {
+                    RCLCPP_INFO(this->get_logger(), "/direction_service has responded to client request");
                     return response->direction;
                 } 
                 else 
@@ -115,6 +117,9 @@ private:
         double front_angle_split = M_PI * 0.5; // 90 degrees -> pi/2
         double danger_zone_angle_split = M_PI * .2; // ~30 degrees 
 
+        std::vector<std::pair<double, float>> front_points;
+        std::vector<std::pair<double, float>> danger_points;
+
         // clear existing values in the copied ranges and intensities array. This
         // removes all copied values while keeping the structure of the msg the same
         front_scan.ranges.clear();
@@ -123,25 +128,55 @@ private:
         danger_zone_scan.intensities.clear();
 
         for (size_t i = 0; i < msg->ranges.size(); i++) {
+            if (msg->ranges[i] > msg->range_max) {msg->ranges[i] = 0;}
+
             double angle = msg->angle_min + (i * msg->angle_increment);
             angle = normalizeAngle(angle);
 
             // Keep only beams in front sector: [-angle_split, +angle_split]
             if (angle >= -front_angle_split && angle <= front_angle_split) 
             {
-                RCLCPP_INFO(this->get_logger(), "front scan angle: %.2f", angle);
-                front_scan.ranges.push_back(msg->ranges[i]);
+                //RCLCPP_INFO(this->get_logger(), "front scan angle: %.2f", angle);
+                //front_scan.ranges.push_back(msg->ranges[i]);
+                front_points.push_back({angle, msg->ranges[i]});
 
                 if (!msg->intensities.empty())
                 front_scan.intensities.push_back(msg->intensities[i]);
             }
             if (angle >=-danger_zone_angle_split && angle <= danger_zone_angle_split)
             {
-                danger_zone_scan.ranges.push_back(msg->ranges[i]);
+                //danger_zone_scan.ranges.push_back(msg->ranges[i]);
+                danger_points.push_back({angle, msg->ranges[i]});
 
                 if (!msg->intensities.empty())
                 danger_zone_scan.intensities.push_back(msg->intensities[i]);
             }
+        }
+
+        // Sort points by angle so scan goes -1.57 -> 0 -> 1.57
+        std::sort(front_points.begin(), front_points.end(),
+                [](const auto &a, const auto &b)
+                {
+                    return a.first < b.first;
+                });
+
+        // Rebuild the scan arrays
+        for (auto &p : front_points)
+        {
+            front_scan.ranges.push_back(p.second);
+        }
+
+        // Sort points by angle so scan goes -1.57 -> 0 -> 1.57
+        std::sort(danger_points.begin(), danger_points.end(),
+                [](const auto &a, const auto &b)
+                {
+                    return a.first < b.first;
+                });
+
+        // Rebuild the scan arrays
+        for (auto &p : danger_points)
+        {
+            danger_zone_scan.ranges.push_back(p.second);
         }
 
 
@@ -150,12 +185,22 @@ private:
         danger_zone_scan.angle_min = -danger_zone_angle_split;
         danger_zone_scan.angle_max = danger_zone_angle_split;
 
+        /*
+        for (size_t i = 0; i < danger_zone_scan.ranges.size(); i++)
+        {
+            double angle = danger_zone_scan.angle_min + i * danger_zone_scan.angle_increment;
 
+            RCLCPP_INFO(this->get_logger(),
+                "angle: %.2f  range: %.2f",
+                angle,
+                danger_zone_scan.ranges[i]);
+        }
+    
         RCLCPP_INFO(this->get_logger(), "front scan angle min: %.2f", front_scan.angle_min );
         RCLCPP_INFO(this->get_logger(), "front scan angle max: %.2f", front_scan.angle_max);
         RCLCPP_INFO(this->get_logger(), "danger scan angle min: %.2f", danger_zone_scan.angle_min );
         RCLCPP_INFO(this->get_logger(), "danger scan angle max: %.2f", danger_zone_scan.angle_max);
-    
+        */
 
         front_laser_data_ = front_scan;
         danger_laser_data_ = danger_zone_scan;
@@ -188,6 +233,15 @@ private:
     }
 
     bool check_laser_data() {
+        for (size_t i = 0; i < danger_laser_data_.ranges.size(); i++)
+            {
+                double angle = danger_laser_data_.angle_min + (i * danger_laser_data_.angle_increment);
+
+                RCLCPP_INFO(this->get_logger(),
+                    "angle: %.2f  range: %.2f",
+                    angle,
+                    danger_laser_data_.ranges[i]);
+            }
         auto min_distance = std::min_element(danger_laser_data_.ranges.begin(), danger_laser_data_.ranges.end());
         int min_distance_index = std::distance(danger_laser_data_.ranges.begin(), min_distance);
         double min_distance_angle = danger_laser_data_.angle_min + (min_distance_index * danger_laser_data_.angle_increment);

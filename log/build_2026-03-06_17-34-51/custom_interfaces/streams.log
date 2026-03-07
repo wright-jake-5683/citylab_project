@@ -1,0 +1,1 @@
+[0.099s] Invoking command in '/home/user/ros2_ws/src/citylab_project/build/custom_interfaces': CMAKE_PREFIX_PATH=/opt/ros/humble: _=/usr/bin/env /usr/bin/cmake /home/user/ros2_ws/src/citylab_project/custom_interfaces -DCMAKE_INSTALL_PREFIX=/home/user/ros2_ws/src/citylab_project/install/custom_interfaces

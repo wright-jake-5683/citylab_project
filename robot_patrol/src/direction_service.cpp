@@ -53,7 +53,6 @@ private:
       total_dist_sec_right_.clear();
       total_dist_sec_front_.clear();
       total_dist_sec_left_.clear();
-
     /*
       RCLCPP_INFO(this->get_logger(), "angle min: %.2f",
                   request->laser_data.angle_min);
@@ -62,8 +61,7 @@ private:
                   */
 
       for (size_t i = 0; i < request->laser_data.ranges.size(); i++) {
-        double angle = request->laser_data.angle_min +
-                       (i * request->laser_data.angle_increment);
+        double angle = request->laser_data.angle_min + (i * request->laser_data.angle_increment);
 
         if (angle >= (request->laser_data.angle_min) && angle <= -(M_PI / 6)) {
           total_dist_sec_right_.push_back(request->laser_data.ranges[i]);
@@ -78,14 +76,14 @@ private:
         }
       }
 
-/*
+
       RCLCPP_INFO(this->get_logger(), "Sec left ranges size: %zu",
                   total_dist_sec_left_.size());
       RCLCPP_INFO(this->get_logger(), "Sec front ranges size: %zu",
                   total_dist_sec_front_.size());
       RCLCPP_INFO(this->get_logger(), "Sec right ranges size: %zu",
                   total_dist_sec_right_.size());
-*/
+                  
     } catch (const std::exception &e) {
       RCLCPP_ERROR(this->get_logger(), "split data Exception: %s", e.what());
     }
@@ -125,11 +123,11 @@ private:
     double total_right = sum_total_dist_sec_right_();
     double total_front = sum_total_dist_sec_front_();
     double total_left = sum_total_dist_sec_left_();
-/*
+
     RCLCPP_INFO(this->get_logger(), "total right: %.2f", total_right);
     RCLCPP_INFO(this->get_logger(), "total front: %.2f", total_front);
     RCLCPP_INFO(this->get_logger(), "total left: %.2f", total_left);
-*/
+
     double max = std::max({total_right, total_front, total_left});
 
     if (max == total_front) {
