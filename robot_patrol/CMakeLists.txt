@@ -10,10 +10,11 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
-find_package(nav_msgs REQUIRED)
+find_package(nav2_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(custom_interfaces REQUIRED)
+find_package(rclcpp_action REQUIRED)
 
 
 # Create executable
@@ -53,6 +54,18 @@ sensor_msgs
 custom_interfaces
 )
 
+add_executable(go_to_pose_action src/go_to_pose_action.cpp)
+ament_target_dependencies(go_to_pose_action
+  rclcpp
+  rclcpp_action
+  geometry_msgs
+  nav2_msgs
+  tf2
+  tf2_geometry_msgs
+  action_msgs
+  custom_interfaces
+)
+
 
 # Install executables
 install(TARGETS
@@ -60,6 +73,7 @@ install(TARGETS
   patrol_with_service
   direction_service
   test_service
+  go_to_pose_action
   DESTINATION lib/${PROJECT_NAME})
 
 # Install launch files
