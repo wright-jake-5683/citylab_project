@@ -150,7 +150,7 @@ class GoToPose : public rclcpp::Node
         }
 
 
-        bool move_to_goal(std::tuple<double, double> &direction_vector, double target_theta)
+        bool move_to_goal()
         {
             // find the vector that represented the difference between where you want to go and where you currently are
             auto direction_vector = std::make_tuple((desired_pos_.x - current_pos_.x), (desired_pos_.y - current_pos_.y));
