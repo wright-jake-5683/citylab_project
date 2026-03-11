@@ -1,0 +1,219 @@
+[0.039s] Invoking command in '/home/user/ros2_ws/src/citylab_project/build/custom_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/simulations/ros2_sims_ws/install/rclrs_tests:/home/simulations/ros2_sims_ws/install/examples_rclrs_minimal_client_service:/home/simulations/ros2_sims_ws/install/sensor_msgs_py:/home/simulations/ros2_sims_ws/install/examples_rclrs_minimal_pub_sub:/home/simulations/ros2_sims_ws/install/examples_rclrs_message_demo:/home/simulations/ros2_sims_ws/install/rclrs:/home/simulations/ros2_sims_ws/install/rosidl_runtime_rs:/opt/ros/humble:/home/simulations/ros2_sims_ws/install/robot_description _=/usr/bin/env /usr/bin/cmake --build /home/user/ros2_ws/src/citylab_project/build/custom_interfaces -- -j8 -l8
+[0.117s] [35m[1mConsolidate compiler generated dependencies of target custom_interfaces__rosidl_generator_c[0m
+[0.141s] [ 10%] Built target custom_interfaces__rosidl_generator_c
+[0.150s] [ 12%] [34m[1mGenerating Rust code for ROS interfaces[0m
+[0.150s] [ 15%] Built target custom_interfaces__cpp
+[0.173s] [ 15%] Built target ament_cmake_python_copy_custom_interfaces
+[0.173s] [35m[1mConsolidate compiler generated dependencies of target custom_interfaces__rosidl_typesupport_introspection_c[0m
+[0.177s] [35m[1mConsolidate compiler generated dependencies of target custom_interfaces__rosidl_typesupport_c[0m
+[0.178s] [35m[1mConsolidate compiler generated dependencies of target custom_interfaces__rosidl_typesupport_fastrtps_c[0m
+[0.186s] [35m[1mConsolidate compiler generated dependencies of target custom_interfaces__rosidl_typesupport_fastrtps_cpp[0m
+[0.192s] [35m[1mConsolidate compiler generated dependencies of target custom_interfaces__rosidl_typesupport_introspection_cpp[0m
+[0.209s] [35m[1mConsolidate compiler generated dependencies of target custom_interfaces__rosidl_typesupport_cpp[0m
+[0.220s] [ 25%] Built target custom_interfaces__rosidl_typesupport_introspection_c
+[0.242s] [ 35%] Built target custom_interfaces__rosidl_typesupport_fastrtps_cpp
+[0.243s] [ 45%] Built target custom_interfaces__rosidl_typesupport_c
+[0.253s] [ 65%] Built target custom_interfaces__rosidl_typesupport_fastrtps_c
+[0.254s] [ 65%] Built target custom_interfaces__rosidl_typesupport_introspection_cpp
+[0.258s] [ 75%] Built target custom_interfaces__rosidl_typesupport_cpp
+[0.542s] running egg_info
+[0.562s] writing custom_interfaces.egg-info/PKG-INFO
+[0.563s] writing dependency_links to custom_interfaces.egg-info/dependency_links.txt
+[0.563s] writing top-level names to custom_interfaces.egg-info/top_level.txt
+[0.622s] [ 75%] Built target custom_interfaces__rs
+[0.644s] reading manifest file 'custom_interfaces.egg-info/SOURCES.txt'
+[0.645s] writing manifest file 'custom_interfaces.egg-info/SOURCES.txt'
+[0.661s] [ 75%] Built target custom_interfaces
+[0.686s] [ 75%] Built target ament_cmake_python_build_custom_interfaces_egg
+[0.711s] [ 77%] Built target custom_interfaces__py
+[0.733s] [35m[1mConsolidate compiler generated dependencies of target custom_interfaces__rosidl_generator_py[0m
+[0.761s] [ 85%] Built target custom_interfaces__rosidl_generator_py
+[0.784s] [35m[1mConsolidate compiler generated dependencies of target custom_interfaces__rosidl_typesupport_fastrtps_c__pyext[0m
+[0.791s] [35m[1mConsolidate compiler generated dependencies of target custom_interfaces__rosidl_typesupport_introspection_c__pyext[0m
+[0.793s] [35m[1mConsolidate compiler generated dependencies of target custom_interfaces__rosidl_typesupport_c__pyext[0m
+[0.808s] [ 90%] Built target custom_interfaces__rosidl_typesupport_fastrtps_c__pyext
+[0.815s] [ 95%] Built target custom_interfaces__rosidl_typesupport_introspection_c__pyext
+[0.816s] [100%] Built target custom_interfaces__rosidl_typesupport_c__pyext
+[0.831s] Invoked command in '/home/user/ros2_ws/src/citylab_project/build/custom_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/simulations/ros2_sims_ws/install/rclrs_tests:/home/simulations/ros2_sims_ws/install/examples_rclrs_minimal_client_service:/home/simulations/ros2_sims_ws/install/sensor_msgs_py:/home/simulations/ros2_sims_ws/install/examples_rclrs_minimal_pub_sub:/home/simulations/ros2_sims_ws/install/examples_rclrs_message_demo:/home/simulations/ros2_sims_ws/install/rclrs:/home/simulations/ros2_sims_ws/install/rosidl_runtime_rs:/opt/ros/humble:/home/simulations/ros2_sims_ws/install/robot_description _=/usr/bin/env /usr/bin/cmake --build /home/user/ros2_ws/src/citylab_project/build/custom_interfaces -- -j8 -l8
+[0.832s] Invoking command in '/home/user/ros2_ws/src/citylab_project/build/custom_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/simulations/ros2_sims_ws/install/rclrs_tests:/home/simulations/ros2_sims_ws/install/examples_rclrs_minimal_client_service:/home/simulations/ros2_sims_ws/install/sensor_msgs_py:/home/simulations/ros2_sims_ws/install/examples_rclrs_minimal_pub_sub:/home/simulations/ros2_sims_ws/install/examples_rclrs_message_demo:/home/simulations/ros2_sims_ws/install/rclrs:/home/simulations/ros2_sims_ws/install/rosidl_runtime_rs:/opt/ros/humble:/home/simulations/ros2_sims_ws/install/robot_description _=/usr/bin/env /usr/bin/cmake --install /home/user/ros2_ws/src/citylab_project/build/custom_interfaces
+[0.849s] -- Install configuration: ""
+[0.849s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/ament_index/resource_index/rosidl_interfaces/custom_interfaces
+[0.849s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces
+[0.849s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv
+[0.850s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail
+[0.850s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail/get_direction__functions.h
+[0.850s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail/get_direction__functions.c
+[0.850s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail/get_direction__struct.h
+[0.850s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail/get_direction__type_support.h
+[0.850s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/get_direction.h
+[0.851s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/msg
+[0.851s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/msg/rosidl_generator_c__visibility_control.h
+[0.851s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action
+[0.851s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail
+[0.851s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail/go_to_pose__type_support.h
+[0.852s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail/go_to_pose__struct.h
+[0.852s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail/go_to_pose__functions.c
+[0.852s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail/go_to_pose__functions.h
+[0.852s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/go_to_pose.h
+[0.852s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/environment/library_path.sh
+[0.852s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/environment/library_path.dsv
+[0.852s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/lib/libcustom_interfaces__rosidl_generator_c.so
+[0.852s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces
+[0.853s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv
+[0.853s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail
+[0.853s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail/get_direction__rosidl_typesupport_fastrtps_c.h
+[0.853s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/msg
+[0.853s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[0.853s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action
+[0.853s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail
+[0.853s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail/go_to_pose__rosidl_typesupport_fastrtps_c.h
+[0.853s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/lib/libcustom_interfaces__rosidl_typesupport_fastrtps_c.so
+[0.853s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces
+[0.853s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv
+[0.854s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail
+[0.854s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail/get_direction__traits.hpp
+[0.854s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail/get_direction__builder.hpp
+[0.854s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail/get_direction__struct.hpp
+[0.854s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail/get_direction__type_support.hpp
+[0.854s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/get_direction.hpp
+[0.854s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/msg
+[0.854s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp
+[0.854s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action
+[0.855s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail
+[0.855s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail/go_to_pose__traits.hpp
+[0.855s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail/go_to_pose__builder.hpp
+[0.855s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail/go_to_pose__type_support.hpp
+[0.855s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail/go_to_pose__struct.hpp
+[0.855s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/go_to_pose.hpp
+[0.855s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces
+[0.855s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv
+[0.855s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail
+[0.856s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail/get_direction__rosidl_typesupport_fastrtps_cpp.hpp
+[0.856s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail/dds_fastrtps
+[0.856s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/msg
+[0.856s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[0.856s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action
+[0.856s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail
+[0.856s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail/go_to_pose__rosidl_typesupport_fastrtps_cpp.hpp
+[0.856s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail/dds_fastrtps
+[0.857s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/lib/libcustom_interfaces__rosidl_typesupport_fastrtps_cpp.so
+[0.857s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces
+[0.857s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv
+[0.857s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail
+[0.857s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail/get_direction__type_support.c
+[0.857s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail/get_direction__rosidl_typesupport_introspection_c.h
+[0.858s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/msg
+[0.858s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[0.858s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action
+[0.858s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail
+[0.858s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail/go_to_pose__type_support.c
+[0.858s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail/go_to_pose__rosidl_typesupport_introspection_c.h
+[0.858s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/lib/libcustom_interfaces__rosidl_typesupport_introspection_c.so
+[0.858s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/lib/libcustom_interfaces__rosidl_typesupport_c.so
+[0.858s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces
+[0.858s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv
+[0.858s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail
+[0.858s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail/get_direction__type_support.cpp
+[0.858s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/srv/detail/get_direction__rosidl_typesupport_introspection_cpp.hpp
+[0.858s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action
+[0.858s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail
+[0.858s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail/go_to_pose__rosidl_typesupport_introspection_cpp.hpp
+[0.858s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/include/custom_interfaces/custom_interfaces/action/detail/go_to_pose__type_support.cpp
+[0.859s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/lib/libcustom_interfaces__rosidl_typesupport_introspection_cpp.so
+[0.859s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/lib/libcustom_interfaces__rosidl_typesupport_cpp.so
+[0.859s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/ament_index/resource_index/rust_packages/custom_interfaces
+[0.859s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/rust
+[0.859s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/rust/Cargo.toml
+[0.859s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/rust/src
+[0.859s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/rust/src/srv.rs
+[0.859s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/rust/src/lib.rs
+[0.859s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/rust/build.rs
+[0.859s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/rust
+[0.859s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/rust/Cargo.toml
+[0.859s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/rust/src
+[0.859s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/rust/src/srv.rs
+[0.859s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/rust/src/lib.rs
+[0.859s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/rust/build.rs
+[0.859s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/rust
+[0.860s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/rust/Cargo.toml
+[0.860s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/rust/src
+[0.860s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/rust/src/srv.rs
+[0.860s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/rust/src/lib.rs
+[0.860s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/rust/build.rs
+[0.860s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/environment/pythonpath.sh
+[0.860s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/environment/pythonpath.dsv
+[0.860s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces-0.0.0-py3.10.egg-info
+[0.860s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces-0.0.0-py3.10.egg-info/PKG-INFO
+[0.860s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces-0.0.0-py3.10.egg-info/top_level.txt
+[0.860s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces-0.0.0-py3.10.egg-info/SOURCES.txt
+[0.860s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces-0.0.0-py3.10.egg-info/dependency_links.txt
+[0.860s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces
+[0.860s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/srv
+[0.860s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/srv/_get_direction.py
+[0.860s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/srv/__init__.py
+[0.860s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/srv/_get_direction_s.c
+[0.860s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/custom_interfaces_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[0.860s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/_custom_interfaces_s.ep.rosidl_typesupport_introspection_c.c
+[0.860s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/libcustom_interfaces__rosidl_generator_py.so
+[0.861s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/_custom_interfaces_s.ep.rosidl_typesupport_c.c
+[0.861s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/__init__.py
+[0.861s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/custom_interfaces_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[0.861s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/_custom_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c
+[0.861s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/custom_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[0.861s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/action
+[0.861s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/action/_go_to_pose_s.c
+[0.861s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/action/__init__.py
+[0.861s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/action/_go_to_pose.py
+[0.915s] Listing '/home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces'...
+[0.916s] Listing '/home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/action'...
+[0.916s] Listing '/home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/srv'...
+[0.918s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/custom_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[0.918s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/custom_interfaces_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[0.919s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/local/lib/python3.10/dist-packages/custom_interfaces/custom_interfaces_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[0.919s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/lib/libcustom_interfaces__rosidl_generator_py.so
+[0.919s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/srv/GetDirection.idl
+[0.920s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/action/GoToPose.idl
+[0.920s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/srv/GetDirection.srv
+[0.920s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/srv/GetDirection_Request.msg
+[0.920s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/srv/GetDirection_Response.msg
+[0.920s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/action/GoToPose.action
+[0.921s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/ament_index/resource_index/package_run_dependencies/custom_interfaces
+[0.921s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/ament_index/resource_index/parent_prefix_path/custom_interfaces
+[0.921s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/environment/ament_prefix_path.sh
+[0.921s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/environment/ament_prefix_path.dsv
+[0.921s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/environment/path.sh
+[0.921s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/environment/path.dsv
+[0.922s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/local_setup.bash
+[0.922s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/local_setup.sh
+[0.922s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/local_setup.zsh
+[0.922s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/local_setup.dsv
+[0.922s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/package.dsv
+[0.923s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/ament_index/resource_index/packages/custom_interfaces
+[0.923s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/export_custom_interfaces__rosidl_generator_cExport.cmake
+[0.923s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/export_custom_interfaces__rosidl_generator_cExport-noconfig.cmake
+[0.923s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/export_custom_interfaces__rosidl_typesupport_fastrtps_cExport.cmake
+[0.923s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/export_custom_interfaces__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[0.923s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/export_custom_interfaces__rosidl_generator_cppExport.cmake
+[0.923s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/export_custom_interfaces__rosidl_typesupport_fastrtps_cppExport.cmake
+[0.924s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/export_custom_interfaces__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[0.924s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/custom_interfaces__rosidl_typesupport_introspection_cExport.cmake
+[0.924s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/custom_interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[0.924s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/custom_interfaces__rosidl_typesupport_cExport.cmake
+[0.924s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/custom_interfaces__rosidl_typesupport_cExport-noconfig.cmake
+[0.924s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/custom_interfaces__rosidl_typesupport_introspection_cppExport.cmake
+[0.924s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/custom_interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[0.924s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/custom_interfaces__rosidl_typesupport_cppExport.cmake
+[0.924s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/custom_interfaces__rosidl_typesupport_cppExport-noconfig.cmake
+[0.924s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/export_custom_interfaces__rosidl_generator_pyExport.cmake
+[0.925s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/export_custom_interfaces__rosidl_generator_pyExport-noconfig.cmake
+[0.925s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/rosidl_cmake-extras.cmake
+[0.925s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake
+[0.925s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/ament_cmake_export_include_directories-extras.cmake
+[0.925s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/ament_cmake_export_libraries-extras.cmake
+[0.926s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/ament_cmake_export_targets-extras.cmake
+[0.927s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[0.927s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[0.927s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/custom_interfacesConfig.cmake
+[0.927s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/cmake/custom_interfacesConfig-version.cmake
+[0.927s] -- Up-to-date: /home/user/ros2_ws/src/citylab_project/install/custom_interfaces/share/custom_interfaces/package.xml
+[0.928s] Invoked command in '/home/user/ros2_ws/src/citylab_project/build/custom_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/simulations/ros2_sims_ws/install/rclrs_tests:/home/simulations/ros2_sims_ws/install/examples_rclrs_minimal_client_service:/home/simulations/ros2_sims_ws/install/sensor_msgs_py:/home/simulations/ros2_sims_ws/install/examples_rclrs_minimal_pub_sub:/home/simulations/ros2_sims_ws/install/examples_rclrs_message_demo:/home/simulations/ros2_sims_ws/install/rclrs:/home/simulations/ros2_sims_ws/install/rosidl_runtime_rs:/opt/ros/humble:/home/simulations/ros2_sims_ws/install/robot_description _=/usr/bin/env /usr/bin/cmake --install /home/user/ros2_ws/src/citylab_project/build/custom_interfaces
