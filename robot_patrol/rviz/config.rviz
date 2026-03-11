@@ -218,7 +218,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: fastbot_1_odom
+    Fixed Frame: fastbot_1_base_link
     Frame Rate: 30
   Name: root
   Tools:
