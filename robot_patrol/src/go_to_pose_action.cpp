@@ -53,7 +53,7 @@ class GoToPose : public rclcpp::Node
 
         void odom_callback(const nav_msgs::msg::Odometry::SharedPtr msg)
         {
-            current_pos_.x = msg->pose.pose.position.x;
+            current_pos_.x = msg->pose.pose.position.x + 1.6;
             current_pos_.y = msg->pose.pose.position.y;
 
              // Calculate the yaw (orientation around the z-axis)
@@ -69,9 +69,6 @@ class GoToPose : public rclcpp::Node
             
             //theta usually just means the yaw angle --> the robot’s rotation around the z-axis.
             current_pos_.theta = yaw;
-            RCLCPP_INFO(this->get_logger(), "Current X: %.2f", current_pos_.x);
-            RCLCPP_INFO(this->get_logger(), "Current Y: %.2f", current_pos_.y);
-            RCLCPP_INFO(this->get_logger(), "Current Theta: %.2f", current_pos_.theta);
         }
 
         rclcpp_action::GoalResponse handle_goal(const rclcpp_action::GoalUUID &uuid, std::shared_ptr<const GoToPoseAction::Goal> goal)
@@ -154,23 +151,20 @@ class GoToPose : public rclcpp::Node
         {
             // find the vector that represented the difference between where you want to go and where you currently are
             auto direction_vector = std::make_tuple((desired_pos_.x - current_pos_.x), (desired_pos_.y - current_pos_.y));
-            //RCLCPP_INFO(this->get_logger(), "X Direction: %.2f", std::get<0>(direction_vector));
-            //RCLCPP_INFO(this->get_logger(), "Y Direction: %.2f", std::get<1>(direction_vector));
 
             //taget_theta is the direction you want to go in
             double target_theta = atan2(std::get<1>(direction_vector), std::get<0>(direction_vector));
-            RCLCPP_INFO(this->get_logger(), "Target Theta: %.2f", target_theta);
+
             // find the difference between the target direction and the direction you are currently facing to figure out the angle in which you need to turn to face the target
             double yaw_error = target_theta - current_pos_.theta;
             
             //Normalize angle get sign to be able to tell direction as yaw-error can be outside pi & -pi
             yaw_error = normalize_angle(yaw_error);
-            RCLCPP_INFO(this->get_logger(), "Yaw Error: %.2f", yaw_error);
 
             // set a tolerancae for facing the correct direction to avoid constant adjustments
-            double tolerance = 0.8; 
+            double tolerance = 0.1; // --> in radians, about 5.7 degrees
 
-            if ((std::get<0>(direction_vector) > -.5 && std::get<0>(direction_vector) < .5) && (std::get<1>(direction_vector) > -.5 && std::get<1>(direction_vector) < .5))
+            if ((std::get<0>(direction_vector) > -.03 && std::get<0>(direction_vector) < .03) && (std::get<1>(direction_vector) > -.03 && std::get<1>(direction_vector) < .03))
             {
                 double target_yaw_error = desired_pos_.theta - current_pos_.theta;
                 if (std::abs(target_yaw_error) > tolerance)
@@ -190,13 +184,11 @@ class GoToPose : public rclcpp::Node
             
             if (yaw_error < tolerance && yaw_error > -tolerance)
             {
-                RCLCPP_INFO(this->get_logger(), "Going straight");
                 publish_velocities(0.2, 0.0);
                 return false;
             }
             else 
             {
-                RCLCPP_INFO(this->get_logger(), "Turning");
                 publish_velocities(0.0, ang_vel);
                 return false;
             }
@@ -211,11 +203,11 @@ class GoToPose : public rclcpp::Node
             }
             else if (yaw_error < 0 && std::abs(yaw_error) > tolerance)
             {
-                return 0.5;
+                return -0.5;
             }
             else if (yaw_error > 0  && std::abs(yaw_error) > tolerance)
             {
-                return -0.5;
+                return 0.5;
             }
             else
             {
